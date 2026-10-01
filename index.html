@@ -1,110 +1,792 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
-<title>ANEMOS - Hotel Digital Concierge</title>
+<title>ANEMOS - Luxury Hotel Digital Concierge</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="guest.css"/>
 </head>
 <body>
-<div id="splash"><div class="splash-logo">ANEMOS</div><div class="splash-sub">Hotel Concierge</div><div class="splash-bar"><div class="splash-bar-inner"></div></div></div>
-<div id="app" class="hidden">
-  <header class="header">
-    <div class="header-logo">ANEMOS</div>
-    <div class="header-right"><div class="room-chip" id="headerRoom">Room 101</div><a href="staff.html" class="staff-link">Staff</a></div>
-  </header>
-  <div class="hero"><div class="hero-overlay"></div><div class="hero-content"><div class="hero-welcome">Welcome to ANEMOS</div><div class="hero-title" id="heroGreeting">Good Evening!</div><div class="hero-tags"><span class="hero-tag">Luxury Stay</span><span class="hero-tag">Beachfront</span><span class="hero-tag">24/7 Concierge</span></div></div></div>
-  <div class="info-banner">
-    <div class="info-item"><div class="info-label">Check-in</div><div class="info-val">2:00 PM</div></div>
-    <div class="info-divider"></div>
-    <div class="info-item"><div class="info-label">Check-out</div><div class="info-val">11:00 AM</div></div>
-    <div class="info-divider"></div>
-    <div class="info-item"><div class="info-label">Room</div><div class="info-val" id="infoBannerRoom">101</div></div>
+
+<div id="splash">
+  <div class="splash-logo">ANEMOS</div>
+  <div class="splash-sub">Luxury Hotel &amp; Suites</div>
+  <div class="splash-bar"><div class="splash-bar-inner"></div></div>
+</div>
+
+<div id="app-container">
+  <div id="app" class="hidden">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-logo">ANEMOS</div>
+      <div class="header-right">
+        <div class="room-chip" id="headerRoom" onclick="document.getElementById('roomModal').classList.add('open')">Room 101 ▾</div>
+        <a href="staff.html" class="staff-link">Staff</a>
+      </div>
+    </header>
+
+    <!-- HERO WITH CINEMATIC ZOOM ANIMATION & IMAGE -->
+    <div class="hero">
+      <div class="hero-img-wrap">
+        <img src="assets/hero.jpg" alt="Luxury Resort" class="hero-bg"/>
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-live-badge">
+          <span class="live-dot"></span>
+          <span>Concierge Desk Live</span>
+        </div>
+        <div class="hero-welcome">Welcome to ANEMOS</div>
+        <div class="hero-title" id="heroGreeting">Good Evening!</div>
+        <div class="hero-tags">
+          <span class="hero-tag">✨ 5-Star Luxury</span>
+          <span class="hero-tag">🌊 Beachfront</span>
+          <span class="hero-tag">🛎️ 24/7 Concierge</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK INFO BANNER -->
+    <div class="info-banner">
+      <div class="info-item">
+        <div class="info-label">Check-in</div>
+        <div class="info-val">2:00 PM</div>
+      </div>
+      <div class="info-divider"></div>
+      <div class="info-item">
+        <div class="info-label">Check-out</div>
+        <div class="info-val">11:00 AM</div>
+      </div>
+      <div class="info-divider"></div>
+      <div class="info-item" onclick="document.getElementById('roomModal').classList.add('open')" style="cursor:pointer">
+        <div class="info-label">Your Room</div>
+        <div class="info-val" id="infoBannerRoom">101 ✎</div>
+      </div>
+    </div>
+
+    <!-- 24/7 CHAT BUTTON WITH PULSE GLOW -->
+    <button class="chat-bubble-btn" onclick="openPage('chat')">
+      <span class="wa-icon">&#128172;</span>
+      <span class="wa-text">
+        <strong>Chat with Concierge</strong>
+        <span>Available 24/7 &bull; Instant WhatsApp-style help</span>
+      </span>
+      <span class="wa-arrow">&#8250;</span>
+    </button>
+
+    <!-- HOTEL SERVICES GRID -->
+    <div class="section">
+      <div class="section-header-wrap">
+        <div>
+          <div class="section-title">Hotel Services</div>
+          <div class="section-sub">Tap any service to view or order</div>
+        </div>
+      </div>
+
+      <div class="cat-grid">
+        <!-- 1. Breakfast -->
+        <div class="cat-card" onclick="openPage('breakfast')">
+          <div class="cat-thumb-wrap">
+            <img src="assets/breakfast.jpg" alt="Breakfast" class="cat-thumb"/>
+            <span class="cat-badge-float">7:00 - 10:30 AM</span>
+          </div>
+          <div class="cat-content">
+            <div class="cat-name">&#127859; Breakfast Menu</div>
+            <div class="cat-desc">Artisan morning spreads &amp; fresh brews</div>
+            <div class="cat-footer">
+              <span>View Menu</span>
+              <span class="cat-arrow">&#8594;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Spa & Wellness -->
+        <div class="cat-card" onclick="openPage('spa')">
+          <div class="cat-thumb-wrap">
+            <img src="assets/spa.jpg" alt="Spa" class="cat-thumb"/>
+            <span class="cat-badge-float">10 AM - 9 PM</span>
+          </div>
+          <div class="cat-content">
+            <div class="cat-name">&#128134; Spa &amp; Wellness</div>
+            <div class="cat-desc">Swedish massage, facial &amp; aroma therapy</div>
+            <div class="cat-footer">
+              <span>Book Session</span>
+              <span class="cat-arrow">&#8594;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. House & Wi-Fi -->
+        <div class="cat-card" onclick="openPage('wifi')">
+          <div class="cat-thumb-wrap">
+            <img src="assets/resort.jpg" alt="Wi-Fi" class="cat-thumb"/>
+            <span class="cat-badge-float">High-Speed</span>
+          </div>
+          <div class="cat-content">
+            <div class="cat-name">&#128246; Wi-Fi &amp; Timings</div>
+            <div class="cat-desc">Network password &amp; facility hours</div>
+            <div class="cat-footer">
+              <span>Get Details</span>
+              <span class="cat-arrow">&#8594;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Mini Bar -->
+        <div class="cat-card" onclick="openPage('minibar')">
+          <div class="cat-thumb-wrap">
+            <img src="assets/drinks.jpg" alt="Mini Bar" class="cat-thumb"/>
+            <span class="cat-badge-float">In-Room</span>
+          </div>
+          <div class="cat-content">
+            <div class="cat-name">&#127865; Mini Bar &amp; Drinks</div>
+            <div class="cat-desc">Cocktails, snacks &amp; direct room billing</div>
+            <div class="cat-footer">
+              <span>Order Drinks</span>
+              <span class="cat-arrow">&#8594;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Guest Services -->
+        <div class="cat-card" onclick="openPage('guestservices')">
+          <div class="cat-thumb-wrap">
+            <img src="assets/services.jpg" alt="Services" class="cat-thumb"/>
+            <span class="cat-badge-float">24 Hours</span>
+          </div>
+          <div class="cat-content">
+            <div class="cat-name">&#128717; Guest Services</div>
+            <div class="cat-desc">Pillows, room cleaning &amp; amenities</div>
+            <div class="cat-footer">
+              <span>1-Tap Request</span>
+              <span class="cat-arrow">&#8594;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Local Guide -->
+        <div class="cat-card" onclick="openPage('localguide')">
+          <div class="cat-thumb-wrap">
+            <img src="assets/guide.jpg" alt="Local Guide" class="cat-thumb"/>
+            <span class="cat-badge-float">Explore</span>
+          </div>
+          <div class="cat-content">
+            <div class="cat-name">&#128506; Local Guide</div>
+            <div class="cat-desc">Beaches, nightlife &amp; heritage spots</div>
+            <div class="cat-footer">
+              <span>Explore Goa</span>
+              <span class="cat-arrow">&#8594;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Wide: Contacts -->
+        <div class="cat-card wide" onclick="openPage('contacts')">
+          <div class="cat-thumb-wrap" style="background:#221d19;display:flex;align-items:center;justify-content:center;color:#f5d7a6;font-size:2.4rem">
+            &#128222;
+          </div>
+          <div class="cat-content">
+            <div class="cat-name">Hotel Contacts &amp; Extensions</div>
+            <div class="cat-desc">Reception, Housekeeping, Valet &amp; Restaurant</div>
+            <div class="cat-footer">
+              <span>Call Staff Directly</span>
+              <span class="cat-arrow">&#8594;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Wide: Property Offers -->
+        <div class="cat-card wide" onclick="openPage('offers')">
+          <div class="cat-thumb-wrap">
+            <img src="assets/resort.jpg" alt="Offers" class="cat-thumb"/>
+          </div>
+          <div class="cat-content">
+            <div class="cat-name">&#127873; Property Offers &amp; Packages</div>
+            <div class="cat-desc">Honeymoon packages &amp; pool day passes</div>
+            <div class="cat-footer">
+              <span>View Offers</span>
+              <span class="cat-arrow">&#8594;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. Policies -->
+        <div class="cat-card" onclick="openPage('policies')">
+          <div class="cat-content" style="padding:18px 14px">
+            <div style="font-size:1.6rem;margin-bottom:6px">&#128203;</div>
+            <div class="cat-name">Hotel Policies</div>
+            <div class="cat-desc">Check-in rules, quiet hours &amp; pool safety</div>
+            <div class="cat-footer" style="margin-top:12px">
+              <span>Read</span>
+              <span class="cat-arrow">&#8594;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. Map -->
+        <div class="cat-card" onclick="openPage('map')">
+          <div class="cat-content" style="padding:18px 14px">
+            <div style="font-size:1.6rem;margin-bottom:6px">&#128205;</div>
+            <div class="cat-name">Property Map</div>
+            <div class="cat-desc">Facilities, gym, pool &amp; floor layout</div>
+            <div class="cat-footer" style="margin-top:12px">
+              <span>View Map</span>
+              <span class="cat-arrow">&#8594;</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="scroll-pad"></div>
   </div>
-  <button class="chat-bubble-btn" onclick="openPage('chat')">
-    <span class="wa-icon">&#128172;</span>
-    <span class="wa-text"><strong>Chat with Concierge</strong><span>Available 24/7 - Replies instantly</span></span>
-    <span class="wa-arrow">&#8250;</span>
-  </button>
-  <div class="section">
-    <div class="section-title">Hotel Services</div>
-    <div class="section-sub">Tap to explore any service</div>
-    <div class="cat-grid">
-      <div class="cat-card" onclick="openPage('breakfast')"><div class="cat-icon">&#127859;</div><div><div class="cat-name">Breakfast</div><div class="cat-desc">7:00 - 10:30 AM</div></div><div class="cat-arrow">&#8250;</div></div>
-      <div class="cat-card" onclick="openPage('wifi')"><div class="cat-icon">&#128246;</div><div><div class="cat-name">House &amp; Wi-Fi</div><div class="cat-desc">Hotel info &amp; network</div></div><div class="cat-arrow">&#8250;</div></div>
-      <div class="cat-card" onclick="openPage('guestservices')"><div class="cat-icon">&#128717;</div><div><div class="cat-name">Guest Services</div><div class="cat-desc">Requests &amp; amenities</div></div><div class="cat-arrow">&#8250;</div></div>
-      <div class="cat-card" onclick="openPage('localguide')"><div class="cat-icon">&#128506;</div><div><div class="cat-name">Local Guide</div><div class="cat-desc">Places to explore</div></div><div class="cat-arrow">&#8250;</div></div>
-      <div class="cat-card" onclick="openPage('contacts')"><div class="cat-icon">&#128222;</div><div><div class="cat-name">Contacts</div><div class="cat-desc">Staff &amp; departments</div></div><div class="cat-arrow">&#8250;</div></div>
-      <div class="cat-card" onclick="openPage('offers')"><div class="cat-icon">&#127873;</div><div><div class="cat-name">Property &amp; Offers</div><div class="cat-desc">Deals &amp; packages</div></div><div class="cat-arrow">&#8250;</div></div>
-      <div class="cat-card" onclick="openPage('policies')"><div class="cat-icon">&#128203;</div><div><div class="cat-name">Policies</div><div class="cat-desc">Rules &amp; guidelines</div></div><div class="cat-arrow">&#8250;</div></div>
-      <div class="cat-card" onclick="openPage('minibar')"><div class="cat-icon">&#127865;</div><div><div class="cat-name">Mini Bar</div><div class="cat-desc">Snacks &amp; beverages</div></div><div class="cat-arrow">&#8250;</div></div>
-      <div class="cat-card wide" onclick="openPage('map')"><div class="cat-icon">&#128205;</div><div class="cat-info"><div class="cat-name">Property Map</div><div class="cat-desc">Find your way around the property</div></div><div class="cat-arrow2">&#8250;</div></div>
-      <div class="cat-card wide" onclick="openPage('spa')"><div class="cat-icon">&#128134;</div><div class="cat-info"><div class="cat-name">Spa &amp; Wellness</div><div class="cat-desc">Book relaxation treatments</div></div><div class="cat-arrow2">&#8250;</div></div>
+
+  <!-- PAGE: BREAKFAST -->
+  <div class="page" id="page-breakfast">
+    <div class="page-hero-banner">
+      <img src="assets/breakfast.jpg" alt="Breakfast Banner" class="page-hero-img"/>
+      <div class="page-hero-grad"></div>
+      <div class="page-hero-text">
+        <h2>&#127859; Breakfast</h2>
+        <p>Served daily: 7:00 AM - 10:30 AM</p>
+      </div>
+    </div>
+    <div class="page-header">
+      <button class="back-btn" onclick="closePage('breakfast')">&#8592; Back</button>
+      <h2>Morning Menu</h2>
+    </div>
+    <div class="page-body">
+      <div class="wifi-badge">Complimentary for registered guests &bull; Room delivery in 25-30 mins</div>
+      <div class="menu-list">
+        <div class="menu-item">
+          <div class="menu-dot veg"></div>
+          <div class="menu-item-info">
+            <div class="menu-item-name">Continental Breakfast</div>
+            <div class="menu-item-desc">Freshly baked croissants, fruit preserves, butter, freshly squeezed juice, premium espresso</div>
+            <span class="menu-item-tag">Vegetarian</span>
+          </div>
+          <div class="menu-time">25 min</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-dot"></div>
+          <div class="menu-item-info">
+            <div class="menu-item-name">Eggs Benedict Royale</div>
+            <div class="menu-item-desc">Two poached eggs, smoked salmon or ham, velvety hollandaise sauce on toasted English muffin</div>
+            <span class="menu-item-tag">Chef's Signature</span>
+          </div>
+          <div class="menu-time">30 min</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-dot veg"></div>
+          <div class="menu-item-info">
+            <div class="menu-item-name">Avocado Sourdough Tartine</div>
+            <div class="menu-item-desc">Rustic sourdough, smashed Hass avocado, heirloom cherry tomatoes, pumpkin seeds, microgreens</div>
+            <span class="menu-item-tag">Healthy Choice</span>
+          </div>
+          <div class="menu-time">20 min</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-dot veg"></div>
+          <div class="menu-item-info">
+            <div class="menu-item-name">Belgian Waffles &amp; Wild Berries</div>
+            <div class="menu-item-desc">Warm golden waffles, pure organic maple syrup, seasonal wild berry compote, whipped mascarpone</div>
+            <span class="menu-item-tag">Sweet Indulgence</span>
+          </div>
+          <div class="menu-time">25 min</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-dot"></div>
+          <div class="menu-item-info">
+            <div class="menu-item-name">Full English Breakfast</div>
+            <div class="menu-item-desc">Eggs to order, chicken sausages, grilled herb tomato, sautéed button mushrooms, baked beans, toast</div>
+            <span class="menu-item-tag">Hearty</span>
+          </div>
+          <div class="menu-time">30 min</div>
+        </div>
+      </div>
+      <br/>
+      <button class="modal-confirm" onclick="openPage('chat')">&#128172; Chat with Concierge to Order</button>
     </div>
   </div>
-  <div class="scroll-pad"></div>
-</div>
 
-<!-- PAGES -->
-<div class="page" id="page-breakfast"><div class="page-header"><button class="back-btn" onclick="closePage('breakfast')">&#8592; Back</button><h2>&#127859; Breakfast</h2></div><div class="page-body"><div class="wifi-badge">Served: 7:00 AM - 10:30 AM</div><div class="menu-list"><div class="menu-item"><div class="menu-dot veg"></div><div class="menu-item-info"><div class="menu-item-name">Continental Breakfast</div><div class="menu-item-desc">Croissants, jam, butter, fresh juice, coffee</div><span class="menu-item-tag">Vegetarian</span></div><div class="menu-time">30 min</div></div><div class="menu-item"><div class="menu-dot veg"></div><div class="menu-item-info"><div class="menu-item-name">Full English Breakfast</div><div class="menu-item-desc">Eggs, toast, baked beans, grilled tomato</div><span class="menu-item-tag">Egg</span></div><div class="menu-time">30 min</div></div><div class="menu-item"><div class="menu-dot veg"></div><div class="menu-item-info"><div class="menu-item-name">Fruit Bowl &amp; Granola</div><div class="menu-item-desc">Seasonal fruits, granola, honey yogurt</div><span class="menu-item-tag">Vegan</span></div><div class="menu-time">30 min</div></div><div class="menu-item"><div class="menu-dot"></div><div class="menu-item-info"><div class="menu-item-name">Pancakes &amp; Waffles</div><div class="menu-item-desc">Maple syrup, fresh berries, whipped cream</div><span class="menu-item-tag">Chef Special</span></div><div class="menu-time">30 min</div></div><div class="menu-item"><div class="menu-dot veg"></div><div class="menu-item-info"><div class="menu-item-name">Avocado Toast</div><div class="menu-item-desc">Sourdough, smashed avocado, cherry tomato</div><span class="menu-item-tag">Healthy</span></div><div class="menu-time">30 min</div></div><div class="menu-item"><div class="menu-dot"></div><div class="menu-item-info"><div class="menu-item-name">Eggs Benedict</div><div class="menu-item-desc">Poached eggs, hollandaise sauce, muffin</div><span class="menu-item-tag">Classic</span></div><div class="menu-time">30 min</div></div></div><br/><button class="modal-confirm" onclick="openPage('chat')">Chat with Concierge to Order</button></div></div>
-
-<div class="page" id="page-wifi"><div class="page-header"><button class="back-btn" onclick="closePage('wifi')">&#8592; Back</button><h2>Wi-Fi &amp; Hotel Info</h2></div><div class="page-body"><div class="info-card"><h3>Wi-Fi Details</h3><div class="info-row"><span class="ikey">Network</span><span class="ival">ANEMOS_Guest</span></div><div class="info-row"><span class="ikey">Password</span><span class="ival" style="font-family:monospace;color:var(--primary);font-weight:700">Anemos@2024</span></div><div class="info-row"><span class="ikey">Speed</span><span class="ival">100 Mbps Fiber</span></div></div><div class="info-card"><h3>Hotel Timings</h3><div class="info-row"><span class="ikey">Breakfast</span><span class="ival">7:00 AM - 10:30 AM</span></div><div class="info-row"><span class="ikey">Spa</span><span class="ival">10:00 AM - 9:00 PM</span></div><div class="info-row"><span class="ikey">Restaurant</span><span class="ival">8:00 AM - 10:30 PM</span></div><div class="info-row"><span class="ikey">Pool</span><span class="ival">7:00 AM - 8:00 PM</span></div><div class="info-row"><span class="ikey">Room Service</span><span class="ival">24 Hours</span></div></div><div class="info-card"><h3>Check-in / Check-out</h3><div class="info-row"><span class="ikey">Check-in</span><span class="ival">2:00 PM</span></div><div class="info-row"><span class="ikey">Check-out</span><span class="ival">11:00 AM</span></div><div class="info-row"><span class="ikey">Late Check-out</span><span class="ival">Available (charges apply)</span></div></div></div></div>
-
-<div class="page" id="page-guestservices"><div class="page-header"><button class="back-btn" onclick="closePage('guestservices')">&#8592; Back</button><h2>Guest Services</h2></div><div class="page-body"><div class="services-list"><div class="service-row" onclick="requestService('Extra Pillows')"><div class="srv-icon">&#128716;</div><div class="srv-info"><div class="srv-name">Extra Pillows</div><div class="srv-desc">Request additional bedding</div></div><div class="srv-arrow">&#8250;</div></div><div class="service-row" onclick="requestService('Extra Blanket')"><div class="srv-icon">&#129491;</div><div class="srv-info"><div class="srv-name">Extra Blanket</div><div class="srv-desc">Request warm blanket</div></div><div class="srv-arrow">&#8250;</div></div><div class="service-row" onclick="requestService('Iron and Board')"><div class="srv-icon">&#128086;</div><div class="srv-info"><div class="srv-name">Iron &amp; Board</div><div class="srv-desc">For clothes</div></div><div class="srv-arrow">&#8250;</div></div><div class="service-row" onclick="requestService('Toiletries Refill')"><div class="srv-icon">&#129516;</div><div class="srv-info"><div class="srv-name">Toiletries Refill</div><div class="srv-desc">Shampoo, soap, conditioner</div></div><div class="srv-arrow">&#8250;</div></div><div class="service-row" onclick="requestService('Room Cleaning')"><div class="srv-icon">&#129529;</div><div class="srv-info"><div class="srv-name">Room Cleaning Now</div><div class="srv-desc">Immediate housekeeping</div></div><div class="srv-arrow">&#8250;</div></div><div class="service-row" onclick="requestService('Do Not Disturb')"><div class="srv-icon">&#128683;</div><div class="srv-info"><div class="srv-name">Do Not Disturb</div><div class="srv-desc">No housekeeping today</div></div><div class="srv-arrow">&#8250;</div></div><div class="service-row" onclick="requestService('Wake-up Call')"><div class="srv-icon">&#9200;</div><div class="srv-info"><div class="srv-name">Wake-up Call</div><div class="srv-desc">Set alarm via staff</div></div><div class="srv-arrow">&#8250;</div></div><div class="service-row" onclick="requestService('Laundry')"><div class="srv-icon">&#128087;</div><div class="srv-info"><div class="srv-name">Laundry Service</div><div class="srv-desc">Same-day or next-day</div></div><div class="srv-arrow">&#8250;</div></div></div></div></div>
-
-<div class="page" id="page-localguide"><div class="page-header"><button class="back-btn" onclick="closePage('localguide')">&#8592; Back</button><h2>Local Guide</h2></div><div class="page-body"><div class="guide-card"><div class="guide-emoji">&#127958;</div><div class="guide-info"><div class="guide-name">Calangute Beach</div><div class="guide-dist">2.5 km - 8 min drive</div></div><div class="guide-badge">Beach</div></div><div class="guide-card"><div class="guide-emoji">&#127749;</div><div class="guide-info"><div class="guide-name">Anjuna Beach</div><div class="guide-dist">5 km - 15 min drive</div></div><div class="guide-badge">Beach</div></div><div class="guide-card"><div class="guide-emoji">&#9962;</div><div class="guide-info"><div class="guide-name">Basilica of Bom Jesus</div><div class="guide-dist">12 km - 25 min</div></div><div class="guide-badge">Heritage</div></div><div class="guide-card"><div class="guide-emoji">&#128717;</div><div class="guide-info"><div class="guide-name">Mapusa Market</div><div class="guide-dist">8 km - 20 min drive</div></div><div class="guide-badge">Shopping</div></div><div class="guide-card"><div class="guide-emoji">&#127869;</div><div class="guide-info"><div class="guide-name">Fisherman Wharf</div><div class="guide-dist">4 km - 10 min drive</div></div><div class="guide-badge">Restaurant</div></div><div class="guide-card"><div class="guide-emoji">&#127754;</div><div class="guide-info"><div class="guide-name">Dudhsagar Waterfalls</div><div class="guide-dist">60 km - Day trip</div></div><div class="guide-badge">Nature</div></div><div class="guide-card"><div class="guide-emoji">&#127940;</div><div class="guide-info"><div class="guide-name">Water Sports Hub</div><div class="guide-dist">3 km - 8 min</div></div><div class="guide-badge">Adventure</div></div><div class="guide-card"><div class="guide-emoji">&#127759;</div><div class="guide-info"><div class="guide-name">Night Market Arpora</div><div class="guide-dist">4 km - 10 min drive</div></div><div class="guide-badge">Nightlife</div></div></div></div>
-
-<div class="page" id="page-contacts"><div class="page-header"><button class="back-btn" onclick="closePage('contacts')">&#8592; Back</button><h2>Contacts</h2></div><div class="page-body"><div class="contact-card"><div class="contact-icon-wrap">&#127968;</div><div class="contact-info"><div class="contact-name">Reception</div><div class="contact-num">Ext: 0 - 24 Hours</div></div><button class="contact-call" onclick="showToast('Calling Reception...')">Call</button></div><div class="contact-card"><div class="contact-icon-wrap">&#129529;</div><div class="contact-info"><div class="contact-name">Housekeeping</div><div class="contact-num">Ext: 101</div></div><button class="contact-call" onclick="showToast('Calling Housekeeping...')">Call</button></div><div class="contact-card"><div class="contact-icon-wrap">&#127869;</div><div class="contact-info"><div class="contact-name">Restaurant</div><div class="contact-num">Ext: 102</div></div><button class="contact-call" onclick="showToast('Calling Restaurant...')">Call</button></div><div class="contact-card"><div class="contact-icon-wrap">&#128134;</div><div class="contact-info"><div class="contact-name">Spa &amp; Wellness</div><div class="contact-num">Ext: 103</div></div><button class="contact-call" onclick="showToast('Calling Spa...')">Call</button></div><div class="contact-card"><div class="contact-icon-wrap">&#128661;</div><div class="contact-info"><div class="contact-name">Valet / Transport</div><div class="contact-num">Ext: 104</div></div><button class="contact-call" onclick="showToast('Calling Valet...')">Call</button></div><div class="contact-card"><div class="contact-icon-wrap">&#128295;</div><div class="contact-info"><div class="contact-name">Maintenance</div><div class="contact-num">Ext: 105</div></div><button class="contact-call" onclick="showToast('Calling Maintenance...')">Call</button></div></div></div>
-
-<div class="page" id="page-policies"><div class="page-header"><button class="back-btn" onclick="closePage('policies')">&#8592; Back</button><h2>Policies</h2></div><div class="page-body"><div class="policy-card"><div class="policy-title">Pet Policy</div><div class="policy-text">Pets are not allowed. Service animals welcome with prior notification.</div></div><div class="policy-card"><div class="policy-title">Smoking Policy</div><div class="policy-text">Non-smoking property. Designated smoking areas near the garden.</div></div><div class="policy-card"><div class="policy-title">Noise Policy</div><div class="policy-text">Quiet hours 10:00 PM - 8:00 AM. Outside visitors must register at reception.</div></div><div class="policy-card"><div class="policy-title">Payment Policy</div><div class="policy-text">All major cards, cash, UPI accepted. Credit card hold at check-in.</div></div><div class="policy-card"><div class="policy-title">Cancellation Policy</div><div class="policy-text">Free cancellation up to 48 hours before check-in. No-show: Full stay charged.</div></div><div class="policy-card"><div class="policy-title">Pool Rules</div><div class="policy-text">Pool open 7 AM - 8 PM. Children under 12 must be supervised.</div></div></div></div>
-
-<div class="page" id="page-minibar"><div class="page-header"><button class="back-btn" onclick="closePage('minibar')">&#8592; Back</button><h2>Mini Bar</h2></div><div class="page-body"><div class="wifi-badge">Items billed to your room automatically</div><div class="minibar-grid"><div class="minibar-card"><div class="minibar-emoji">&#127866;</div><div class="minibar-name">Kingfisher Beer</div><div class="minibar-price">Rs. 250</div><button class="minibar-btn" onclick="addMinibar('Kingfisher Beer','250')">+ Order</button></div><div class="minibar-card"><div class="minibar-emoji">&#129380;</div><div class="minibar-name">Coca Cola</div><div class="minibar-price">Rs. 120</div><button class="minibar-btn" onclick="addMinibar('Coca Cola','120')">+ Order</button></div><div class="minibar-card"><div class="minibar-emoji">&#129381;</div><div class="minibar-name">Fruit Juice</div><div class="minibar-price">Rs. 180</div><button class="minibar-btn" onclick="addMinibar('Fruit Juice','180')">+ Order</button></div><div class="minibar-card"><div class="minibar-emoji">&#128167;</div><div class="minibar-name">Mineral Water 1L</div><div class="minibar-price">Rs. 80</div><button class="minibar-btn" onclick="addMinibar('Mineral Water','80')">+ Order</button></div><div class="minibar-card"><div class="minibar-emoji">&#127849;</div><div class="minibar-name">Dairy Milk</div><div class="minibar-price">Rs. 150</div><button class="minibar-btn" onclick="addMinibar('Dairy Milk','150')">+ Order</button></div><div class="minibar-card"><div class="minibar-emoji">&#129385;</div><div class="minibar-name">Roasted Peanuts</div><div class="minibar-price">Rs. 120</div><button class="minibar-btn" onclick="addMinibar('Peanuts','120')">+ Order</button></div><div class="minibar-card"><div class="minibar-emoji">&#127863;</div><div class="minibar-name">Red Wine Mini</div><div class="minibar-price">Rs. 650</div><button class="minibar-btn" onclick="addMinibar('Red Wine','650')">+ Order</button></div><div class="minibar-card"><div class="minibar-emoji">&#9749;</div><div class="minibar-name">Nescafe Kit</div><div class="minibar-price">Rs. 100</div><button class="minibar-btn" onclick="addMinibar('Coffee Kit','100')">+ Order</button></div></div></div></div>
-
-<div class="page" id="page-map"><div class="page-header"><button class="back-btn" onclick="closePage('map')">&#8592; Back</button><h2>Property Map</h2></div><div class="page-body"><div class="map-card"><div class="map-placeholder"><div class="map-pin">&#128205;</div><p>ANEMOS Hotel, North Goa</p></div><div class="map-info"><p>Survey No. 45, Candolim Road, Calangute, North Goa - 403515</p></div></div><div class="info-card"><h3>Facilities</h3><div class="info-row"><span class="ikey">Swimming Pool</span><span class="ival">Ground Floor - Rear Garden</span></div><div class="info-row"><span class="ikey">Restaurant</span><span class="ival">Ground Floor - Main Building</span></div><div class="info-row"><span class="ikey">Spa</span><span class="ival">1st Floor - East Wing</span></div><div class="info-row"><span class="ikey">Gym</span><span class="ival">1st Floor - West Wing</span></div><div class="info-row"><span class="ikey">Reception</span><span class="ival">Ground Floor - Main Lobby</span></div><div class="info-row"><span class="ikey">Parking</span><span class="ival">Basement - B1 Level</span></div></div></div></div>
-
-<div class="page" id="page-offers"><div class="page-header"><button class="back-btn" onclick="closePage('offers')">&#8592; Back</button><h2>Property &amp; Offers</h2></div><div class="page-body"><div class="offer-card"><div class="offer-banner"><h3>Honeymoon Package</h3><p>Special romantic getaway for couples</p></div><ul class="offer-body"><li>Complimentary room upgrade</li><li>Candle-light dinner for two</li><li>Couple spa session 60 min</li><li>Welcome fruit basket and wine</li></ul></div><div class="offer-card"><div class="offer-banner" style="background:linear-gradient(135deg,#4a90d9,#2c6fad)"><h3>Pool and Spa Day Pass</h3><p>Relax and rejuvenate all day</p></div><ul class="offer-body"><li>Full-day pool access</li><li>One spa treatment of choice</li><li>Complimentary welcome drink</li></ul></div><div class="offer-card"><div class="offer-banner" style="background:linear-gradient(135deg,#4caf7d,#2e7d52)"><h3>Dining Offer</h3><p>Save on every meal this week</p></div><ul class="offer-body"><li>20% off on all a la carte items</li><li>Free mocktail with main course</li></ul></div><button class="modal-confirm" style="margin-top:16px" onclick="openPage('chat')">Book via Concierge Chat</button></div></div>
-
-<div class="page" id="page-spa"><div class="page-header"><button class="back-btn" onclick="closePage('spa')">&#8592; Back</button><h2>Spa &amp; Wellness</h2></div><div class="page-body"><div class="wifi-badge">Hours: 10:00 AM - 9:00 PM</div><div class="spa-list"><div class="spa-item"><div class="spa-emoji">&#128134;</div><div class="spa-info"><div class="spa-name">Swedish Massage</div><div class="spa-detail">60 min - Rs. 1,500 - Full body relaxation</div></div><button class="spa-book" onclick="bookSpa('Swedish Massage')">Book</button></div><div class="spa-item"><div class="spa-emoji">&#128170;</div><div class="spa-info"><div class="spa-name">Deep Tissue Massage</div><div class="spa-detail">90 min - Rs. 2,000 - Muscle tension relief</div></div><button class="spa-book" onclick="bookSpa('Deep Tissue')">Book</button></div><div class="spa-item"><div class="spa-emoji">&#127800;</div><div class="spa-info"><div class="spa-name">Aromatherapy</div><div class="spa-detail">60 min - Rs. 1,800 - Stress relief</div></div><button class="spa-book" onclick="bookSpa('Aromatherapy')">Book</button></div><div class="spa-item"><div class="spa-emoji">&#10024;</div><div class="spa-info"><div class="spa-name">Luxury Facial</div><div class="spa-detail">45 min - Rs. 1,200 - Skin rejuvenation</div></div><button class="spa-book" onclick="bookSpa('Luxury Facial')">Book</button></div><div class="spa-item"><div class="spa-emoji">&#129461;</div><div class="spa-info"><div class="spa-name">Foot Reflexology</div><div class="spa-detail">30 min - Rs. 800</div></div><button class="spa-book" onclick="bookSpa('Foot Reflexology')">Book</button></div><div class="spa-item"><div class="spa-emoji">&#128701;</div><div class="spa-info"><div class="spa-name">Floral Bath Ritual</div><div class="spa-detail">45 min - Rs. 1,400 - Rose and jasmine bath</div></div><button class="spa-book" onclick="bookSpa('Floral Bath')">Book</button></div></div></div></div>
-
-<div class="page" id="page-chat">
-  <div class="page-header" style="background:#075E54;border:none;">
-    <button class="back-btn" style="background:transparent;border:none;color:#fff;" onclick="closePage('chat')">&#8592; Back</button>
-    <div style="width:36px;height:36px;border-radius:50%;background:#c4915a;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem">A</div>
-    <div style="flex:1"><div style="font-size:0.95rem;font-weight:600;color:#fff">ANEMOS Concierge</div><div style="color:rgba(255,255,255,0.7);font-size:0.7rem">Online now</div></div>
-  </div>
-  <div class="chat-body" id="chatBody">
-    <div class="msg received"><div class="msg-bubble">Welcome to ANEMOS! How can we make your stay more special today?</div><div class="msg-time">Concierge - Now</div></div>
-    <div class="msg received"><div class="msg-bubble">You can request anything - room service, breakfast, spa bookings, or ask anything about the hotel!</div><div class="msg-time">Concierge - Now</div></div>
-  </div>
-  <div class="quick-chips">
-    <div class="chip" onclick="sendQuick('Order Breakfast')">Order Breakfast</div>
-    <div class="chip" onclick="sendQuick('Book Spa')">Book Spa</div>
-    <div class="chip" onclick="sendQuick('Extra Towels')">Extra Towels</div>
-    <div class="chip" onclick="sendQuick('Room Cleaning')">Room Cleaning</div>
-    <div class="chip" onclick="sendQuick('Wi-Fi Password')">Wi-Fi Password</div>
-    <div class="chip" onclick="sendQuick('Late Check-out')">Late Check-out</div>
-  </div>
-  <div class="chat-input-area">
-    <input type="text" class="chat-input" id="chatInput" placeholder="Type a message..." onkeypress="handleChatKey(event)"/>
-    <button class="chat-send" onclick="sendChatMsg()">&#10148;</button>
-  </div>
-</div>
-
-<div class="modal-overlay" id="roomModal">
-  <div class="modal">
-    <div class="modal-title">Welcome!</div>
-    <div class="modal-sub">Please select your room number to personalize your experience.</div>
-    <div class="room-selector">
-      <label>Room Number</label>
-      <div class="room-controls"><button class="room-btn" onclick="changeRoom(-1)">-</button><div class="room-val" id="roomVal">101</div><button class="room-btn" onclick="changeRoom(1)">+</button></div>
+  <!-- PAGE: SPA & WELLNESS -->
+  <div class="page" id="page-spa">
+    <div class="page-hero-banner">
+      <img src="assets/spa.jpg" alt="Spa Banner" class="page-hero-img"/>
+      <div class="page-hero-grad"></div>
+      <div class="page-hero-text">
+        <h2>&#128134; Spa &amp; Wellness</h2>
+        <p>Operating: 10:00 AM - 9:00 PM</p>
+      </div>
     </div>
-    <button class="modal-confirm" onclick="confirmRoom()">Confirm Room and Continue</button>
+    <div class="page-header">
+      <button class="back-btn" onclick="closePage('spa')">&#8592; Back</button>
+      <h2>Holistic Treatments</h2>
+    </div>
+    <div class="page-body">
+      <div class="wifi-badge">Enjoy 20% off all sessions booked between 11 AM - 3 PM</div>
+      <div class="spa-list">
+        <div class="spa-item">
+          <div class="spa-emoji">&#128134;</div>
+          <div class="spa-info">
+            <div class="spa-name">Swedish Relaxation Massage</div>
+            <div class="spa-detail">60 min &bull; Rs. 1,800 &bull; Light to medium pressure full-body therapy</div>
+          </div>
+          <button class="spa-book" onclick="bookSpa('Swedish Massage')">Book</button>
+        </div>
+        <div class="spa-item">
+          <div class="spa-emoji">&#128170;</div>
+          <div class="spa-info">
+            <div class="spa-name">Deep Tissue Sports Therapy</div>
+            <div class="spa-detail">90 min &bull; Rs. 2,500 &bull; Relieves muscle stiffness and tension</div>
+          </div>
+          <button class="spa-book" onclick="bookSpa('Deep Tissue')">Book</button>
+        </div>
+        <div class="spa-item">
+          <div class="spa-emoji">&#127800;</div>
+          <div class="spa-info">
+            <div class="spa-name">Organic Aromatherapy Ritual</div>
+            <div class="spa-detail">60 min &bull; Rs. 2,100 &bull; Lavender and chamomile essential oils</div>
+          </div>
+          <button class="spa-book" onclick="bookSpa('Aromatherapy')">Book</button>
+        </div>
+        <div class="spa-item">
+          <div class="spa-emoji">&#10024;</div>
+          <div class="spa-info">
+            <div class="spa-name">Radiance Glow Facial</div>
+            <div class="spa-detail">45 min &bull; Rs. 1,500 &bull; Deep cleansing with botanical serum</div>
+          </div>
+          <button class="spa-book" onclick="bookSpa('Radiance Facial')">Book</button>
+        </div>
+        <div class="spa-item">
+          <div class="spa-emoji">&#128701;</div>
+          <div class="spa-info">
+            <div class="spa-name">Floral Bath &amp; Foot Reflexology</div>
+            <div class="spa-detail">50 min &bull; Rs. 1,700 &bull; Warm rose water soak &amp; acupressure</div>
+          </div>
+          <button class="spa-book" onclick="bookSpa('Floral Bath')">Book</button>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- PAGE: WI-FI & HOTEL INFO -->
+  <div class="page" id="page-wifi">
+    <div class="page-hero-banner">
+      <img src="assets/resort.jpg" alt="Resort" class="page-hero-img"/>
+      <div class="page-hero-grad"></div>
+      <div class="page-hero-text">
+        <h2>House &amp; Wi-Fi</h2>
+        <p>Essential property connectivity &amp; timings</p>
+      </div>
+    </div>
+    <div class="page-header">
+      <button class="back-btn" onclick="closePage('wifi')">&#8592; Back</button>
+      <h2>Property Details</h2>
+    </div>
+    <div class="page-body">
+      <div class="info-card">
+        <h3>High-Speed Guest Wi-Fi</h3>
+        <div class="info-row"><span class="ikey">Network (SSID)</span><span class="ival">ANEMOS_Luxury_Guest</span></div>
+        <div class="info-row"><span class="ikey">Password</span><span class="ival" style="font-family:monospace;color:var(--primary);font-weight:700;font-size:1rem">Anemos@2024</span></div>
+        <div class="info-row"><span class="ikey">Speed</span><span class="ival">200 Mbps Dedicated Fiber</span></div>
+      </div>
+      <div class="info-card">
+        <h3>Facility Operating Hours</h3>
+        <div class="info-row"><span class="ikey">Breakfast</span><span class="ival">7:00 AM - 10:30 AM</span></div>
+        <div class="info-row"><span class="ikey">Infinity Pool</span><span class="ival">7:00 AM - 8:00 PM</span></div>
+        <div class="info-row"><span class="ikey">Spa &amp; Salon</span><span class="ival">10:00 AM - 9:00 PM</span></div>
+        <div class="info-row"><span class="ikey">Restaurant &amp; Bar</span><span class="ival">11:00 AM - 11:30 PM</span></div>
+        <div class="info-row"><span class="ikey">In-Room Dining</span><span class="ival">24 Hours Round the Clock</span></div>
+      </div>
+      <div class="info-card">
+        <h3>Check-in / Check-out</h3>
+        <div class="info-row"><span class="ikey">Check-in</span><span class="ival">2:00 PM</span></div>
+        <div class="info-row"><span class="ikey">Check-out</span><span class="ival">11:00 AM</span></div>
+        <div class="info-row"><span class="ikey">Late Check-out</span><span class="ival">Subject to availability (contact desk)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE: MINI BAR -->
+  <div class="page" id="page-minibar">
+    <div class="page-hero-banner">
+      <img src="assets/drinks.jpg" alt="Drinks" class="page-hero-img"/>
+      <div class="page-hero-grad"></div>
+      <div class="page-hero-text">
+        <h2>&#127865; Mini Bar</h2>
+        <p>In-room refreshments &bull; 24-hr restock</p>
+      </div>
+    </div>
+    <div class="page-header">
+      <button class="back-btn" onclick="closePage('minibar')">&#8592; Back</button>
+      <h2>Beverages &amp; Snacks</h2>
+    </div>
+    <div class="page-body">
+      <div class="wifi-badge">Items requested will be brought to your room &amp; added to your folio</div>
+      <div class="minibar-grid">
+        <div class="minibar-card">
+          <div class="minibar-emoji">&#127866;</div>
+          <div class="minibar-name">Kingfisher Premium</div>
+          <div class="minibar-price">Rs. 250</div>
+          <button class="minibar-btn" onclick="addMinibar('Kingfisher Beer','250')">+ Add to Room</button>
+        </div>
+        <div class="minibar-card">
+          <div class="minibar-emoji">&#127863;</div>
+          <div class="minibar-name">Red Wine Reserva (375ml)</div>
+          <div class="minibar-price">Rs. 850</div>
+          <button class="minibar-btn" onclick="addMinibar('Red Wine','850')">+ Add to Room</button>
+        </div>
+        <div class="minibar-card">
+          <div class="minibar-emoji">&#129380;</div>
+          <div class="minibar-name">Coca-Cola Zero</div>
+          <div class="minibar-price">Rs. 120</div>
+          <button class="minibar-btn" onclick="addMinibar('Coca Cola','120')">+ Add to Room</button>
+        </div>
+        <div class="minibar-card">
+          <div class="minibar-emoji">&#128167;</div>
+          <div class="minibar-name">San Pellegrino Sparkling</div>
+          <div class="minibar-price">Rs. 220</div>
+          <button class="minibar-btn" onclick="addMinibar('Sparkling Water','220')">+ Add to Room</button>
+        </div>
+        <div class="minibar-card">
+          <div class="minibar-emoji">&#127849;</div>
+          <div class="minibar-name">Artisan Dark Chocolate</div>
+          <div class="minibar-price">Rs. 180</div>
+          <button class="minibar-btn" onclick="addMinibar('Dark Chocolate','180')">+ Add to Room</button>
+        </div>
+        <div class="minibar-card">
+          <div class="minibar-emoji">&#129385;</div>
+          <div class="minibar-name">Smoked Roasted Almonds</div>
+          <div class="minibar-price">Rs. 190</div>
+          <button class="minibar-btn" onclick="addMinibar('Roasted Almonds','190')">+ Add to Room</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE: GUEST SERVICES -->
+  <div class="page" id="page-guestservices">
+    <div class="page-hero-banner">
+      <img src="assets/services.jpg" alt="Services" class="page-hero-img"/>
+      <div class="page-hero-grad"></div>
+      <div class="page-hero-text">
+        <h2>&#128717; Guest Services</h2>
+        <p>1-tap housekeeping &amp; room requests</p>
+      </div>
+    </div>
+    <div class="page-header">
+      <button class="back-btn" onclick="closePage('guestservices')">&#8592; Back</button>
+      <h2>Housekeeping Requests</h2>
+    </div>
+    <div class="page-body">
+      <div class="services-list">
+        <div class="service-row" onclick="requestService('Extra Luxury Pillows')">
+          <div class="srv-icon">&#128716;</div>
+          <div class="srv-info">
+            <div class="srv-name">Extra Feather / Memory Foam Pillows</div>
+            <div class="srv-desc">Delivered to room in 10 minutes</div>
+          </div>
+          <div class="srv-arrow">&#8250;</div>
+        </div>
+        <div class="service-row" onclick="requestService('Fresh Plush Towels')">
+          <div class="srv-icon">&#128703;</div>
+          <div class="srv-info">
+            <div class="srv-name">Fresh Bath &amp; Pool Towels</div>
+            <div class="srv-desc">Fresh laundered luxury towels</div>
+          </div>
+          <div class="srv-arrow">&#8250;</div>
+        </div>
+        <div class="service-row" onclick="requestService('Room Make-Up / Cleaning')">
+          <div class="srv-icon">&#129529;</div>
+          <div class="srv-info">
+            <div class="srv-name">Clean Room Now</div>
+            <div class="srv-desc">Housekeeper dispatched immediately</div>
+          </div>
+          <div class="srv-arrow">&#8250;</div>
+        </div>
+        <div class="service-row" onclick="requestService('Dental &amp; Shaving Kit')">
+          <div class="srv-icon">&#129516;</div>
+          <div class="srv-info">
+            <div class="srv-name">Toiletries &amp; Amenities Refill</div>
+            <div class="srv-desc">Shampoo, conditioner, dental &amp; shaving kit</div>
+          </div>
+          <div class="srv-arrow">&#8250;</div>
+        </div>
+        <div class="service-row" onclick="requestService('Iron and Board')">
+          <div class="srv-icon">&#128086;</div>
+          <div class="srv-info">
+            <div class="srv-name">Steam Iron &amp; Ironing Board</div>
+            <div class="srv-desc">Complimentary in-room delivery</div>
+          </div>
+          <div class="srv-arrow">&#8250;</div>
+        </div>
+        <div class="service-row" onclick="requestService('Do Not Disturb')">
+          <div class="srv-icon">&#128683;</div>
+          <div class="srv-info">
+            <div class="srv-name">Privacy: Do Not Disturb</div>
+            <div class="srv-desc">Suspend housekeeping and in-room rings</div>
+          </div>
+          <div class="srv-arrow">&#8250;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE: LOCAL GUIDE -->
+  <div class="page" id="page-localguide">
+    <div class="page-hero-banner">
+      <img src="assets/guide.jpg" alt="Guide" class="page-hero-img"/>
+      <div class="page-hero-grad"></div>
+      <div class="page-hero-text">
+        <h2>&#128506; Local Guide</h2>
+        <p>Curated beaches, dining &amp; sightseeing</p>
+      </div>
+    </div>
+    <div class="page-header">
+      <button class="back-btn" onclick="closePage('localguide')">&#8592; Back</button>
+      <h2>Top Attractions</h2>
+    </div>
+    <div class="page-body">
+      <div class="guide-card">
+        <div class="guide-emoji">&#127958;</div>
+        <div class="guide-info">
+          <div class="guide-name">Calangute &amp; Candolim Beach</div>
+          <div class="guide-dist">2.5 km &bull; 8 min drive &bull; Golden sand &amp; shacks</div>
+        </div>
+        <div class="guide-badge">Beach</div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-emoji">&#127749;</div>
+        <div class="guide-info">
+          <div class="guide-name">Anjuna Cliff Sunset Point</div>
+          <div class="guide-dist">5.5 km &bull; 15 min drive &bull; Sunset views &amp; music</div>
+        </div>
+        <div class="guide-badge">Sunset</div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-emoji">&#9962;</div>
+        <div class="guide-info">
+          <div class="guide-name">Basilica of Bom Jesus</div>
+          <div class="guide-dist">14 km &bull; 25 min &bull; UNESCO World Heritage</div>
+        </div>
+        <div class="guide-badge">Heritage</div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-emoji">&#127869;</div>
+        <div class="guide-info">
+          <div class="guide-name">Thalassa Greek Taverna</div>
+          <div class="guide-dist">6 km &bull; 14 min &bull; Iconic dining with sea views</div>
+        </div>
+        <div class="guide-badge">Dining</div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-emoji">&#127940;</div>
+        <div class="guide-info">
+          <div class="guide-name">Goa Water Sports Center</div>
+          <div class="guide-dist">3 km &bull; Jet skiing, parasailing &amp; speedboats</div>
+        </div>
+        <div class="guide-badge">Adventure</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE: CONTACTS -->
+  <div class="page" id="page-contacts">
+    <div class="page-header">
+      <button class="back-btn" onclick="closePage('contacts')">&#8592; Back</button>
+      <h2>Hotel Directory</h2>
+    </div>
+    <div class="page-body">
+      <div class="contact-card">
+        <div class="contact-icon-wrap">&#127968;</div>
+        <div class="contact-info">
+          <div class="contact-name">Front Desk &amp; Concierge</div>
+          <div class="contact-num">Ext: 0 &bull; Available 24 Hours</div>
+        </div>
+        <button class="contact-call" onclick="showToast('Calling Reception...')">Call</button>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon-wrap">&#129529;</div>
+        <div class="contact-info">
+          <div class="contact-name">Housekeeping Desk</div>
+          <div class="contact-num">Ext: 101 &bull; 6:00 AM - 11:00 PM</div>
+        </div>
+        <button class="contact-call" onclick="showToast('Calling Housekeeping...')">Call</button>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon-wrap">&#127869;</div>
+        <div class="contact-info">
+          <div class="contact-name">Restaurant &amp; In-Room Dining</div>
+          <div class="contact-num">Ext: 102 &bull; 24 Hours</div>
+        </div>
+        <button class="contact-call" onclick="showToast('Calling Dining...')">Call</button>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon-wrap">&#128134;</div>
+        <div class="contact-info">
+          <div class="contact-name">Ayurvedic Spa &amp; Salon</div>
+          <div class="contact-num">Ext: 103 &bull; 10:00 AM - 9:00 PM</div>
+        </div>
+        <button class="contact-call" onclick="showToast('Calling Spa...')">Call</button>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon-wrap">&#128661;</div>
+        <div class="contact-info">
+          <div class="contact-name">Valet &amp; Airport Transfer</div>
+          <div class="contact-num">Ext: 104 &bull; 24 Hours</div>
+        </div>
+        <button class="contact-call" onclick="showToast('Calling Valet...')">Call</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE: OFFERS -->
+  <div class="page" id="page-offers">
+    <div class="page-header">
+      <button class="back-btn" onclick="closePage('offers')">&#8592; Back</button>
+      <h2>Exclusive Offers</h2>
+    </div>
+    <div class="page-body">
+      <div class="offer-card">
+        <div class="offer-banner">
+          <h3>Romantic Escape Package</h3>
+          <p>Specially curated for couples celebrating milestones</p>
+        </div>
+        <ul class="offer-body">
+          <li>Complimentary room upgrade to Ocean Suite (subject to availability)</li>
+          <li>Candlelight four-course dinner with sparkling wine</li>
+          <li>60-minute couple relaxing aromatherapy session</li>
+          <li>Late check-out until 3:00 PM</li>
+        </ul>
+      </div>
+      <div class="offer-card">
+        <div class="offer-banner" style="background:linear-gradient(135deg,#2e7d52,#1b4d32)">
+          <h3>Gourmet Dining Experience</h3>
+          <p>Exclusive culinary offer during your stay</p>
+        </div>
+        <ul class="offer-body">
+          <li>20% off all a la carte dining at the beachfront restaurant</li>
+          <li>Complimentary sunset mocktail with every dinner</li>
+        </ul>
+      </div>
+      <button class="modal-confirm" onclick="openPage('chat')">&#128172; Claim Offer via Concierge Chat</button>
+    </div>
+  </div>
+
+  <!-- PAGE: POLICIES -->
+  <div class="page" id="page-policies">
+    <div class="page-header">
+      <button class="back-btn" onclick="closePage('policies')">&#8592; Back</button>
+      <h2>Hotel Policies</h2>
+    </div>
+    <div class="page-body">
+      <div class="policy-card">
+        <div class="policy-title">&#128685; Smoking Policy</div>
+        <div class="policy-text">ANEMOS is a 100% non-smoking resort inside guest rooms and indoor public spaces. Designated smoking areas are available near the beach garden pavilion.</div>
+      </div>
+      <div class="policy-card">
+        <div class="policy-title">&#128337; Quiet Hours</div>
+        <div class="policy-text">To guarantee every guest a restful sleep, quiet hours are observed between 10:00 PM and 8:00 AM. Please keep balcony and television volumes moderate.</div>
+      </div>
+      <div class="policy-card">
+        <div class="policy-title">&#127946; Pool Guidelines</div>
+        <div class="policy-text">The infinity pool operates from 7:00 AM to 8:00 PM daily. Showering is required prior to entering. Children under 12 must be accompanied by an adult.</div>
+      </div>
+      <div class="policy-card">
+        <div class="policy-title">&#128179; Payment &amp; Incidental Deposit</div>
+        <div class="policy-text">All major credit/debit cards, UPI, and cash are accepted. Room charges are settled upon check-out.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE: MAP -->
+  <div class="page" id="page-map">
+    <div class="page-header">
+      <button class="back-btn" onclick="closePage('map')">&#8592; Back</button>
+      <h2>Property Map</h2>
+    </div>
+    <div class="page-body">
+      <div class="map-card">
+        <div class="map-placeholder">
+          <div class="map-pin">&#128205;</div>
+          <p style="font-weight:600">ANEMOS Beachfront Resort &amp; Villas</p>
+          <span style="font-size:0.75rem;color:var(--text3)">North Goa &bull; Direct Beach Access</span>
+        </div>
+        <div class="map-info">
+          Candolim Beach Road, North Goa, 403515
+        </div>
+      </div>
+      <div class="info-card">
+        <h3>Property Directory</h3>
+        <div class="info-row"><span class="ikey">Infinity Pool</span><span class="ival">Beachfront West Deck (Ground Flr)</span></div>
+        <div class="info-row"><span class="ikey">Fine Dine Restaurant</span><span class="ival">Main Pavillion (Ground Flr)</span></div>
+        <div class="info-row"><span class="ikey">Ayurvedic Spa &amp; Salon</span><span class="ival">East Garden Wing (1st Flr)</span></div>
+        <div class="info-row"><span class="ikey">Fitness Center</span><span class="ival">Ocean View Gym (2nd Flr)</span></div>
+        <div class="info-row"><span class="ikey">Reception &amp; Lobby</span><span class="ival">Porte-Cochère Entrance</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE: 24/7 CHAT -->
+  <div class="page" id="page-chat">
+    <div class="page-header" style="background:#075E54;border:none;">
+      <button class="back-btn" style="background:transparent;border:none;color:#fff;" onclick="closePage('chat')">&#8592; Back</button>
+      <div style="width:38px;height:38px;border-radius:50%;background:#c4915a;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.1rem;box-shadow:0 2px 6px rgba(0,0,0,0.2)">A</div>
+      <div style="flex:1">
+        <div style="font-size:0.95rem;font-weight:600;color:#fff">ANEMOS Concierge</div>
+        <div style="color:rgba(255,255,255,0.75);font-size:0.72rem;display:flex;align-items:center;gap:4px">
+          <span style="width:6px;height:6px;border-radius:50%;background:#25D366;display:inline-block"></span> Online &bull; Replies instantly
+        </div>
+      </div>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="msg received">
+        <div class="msg-bubble">Hello! Welcome to ANEMOS Hotel &amp; Suites. It is our pleasure to have you with us today.</div>
+        <div class="msg-time">Concierge &bull; Just now</div>
+      </div>
+      <div class="msg received">
+        <div class="msg-bubble">How can we assist you? You can request room cleaning, extra amenities, order food, or book a spa appointment right here!</div>
+        <div class="msg-time">Concierge &bull; Just now</div>
+      </div>
+    </div>
+    <div class="quick-chips">
+      <div class="chip" onclick="sendQuick('Order Breakfast')">&#127859; Order Breakfast</div>
+      <div class="chip" onclick="sendQuick('Book Spa')">&#128134; Book Spa</div>
+      <div class="chip" onclick="sendQuick('Extra Towels')">&#128703; Extra Towels</div>
+      <div class="chip" onclick="sendQuick('Room Cleaning')">&#129529; Clean Room</div>
+      <div class="chip" onclick="sendQuick('Wi-Fi Password')">&#128246; Wi-Fi Password</div>
+      <div class="chip" onclick="sendQuick('Late Check-out')">&#9200; Late Check-out</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Type your request here..." onkeypress="handleChatKey(event)"/>
+      <button class="chat-send" onclick="sendChatMsg()">&#10148;</button>
+    </div>
+  </div>
+
+  <!-- ROOM SELECTION MODAL -->
+  <div class="modal-overlay" id="roomModal">
+    <div class="modal">
+      <div class="modal-title">Welcome to ANEMOS</div>
+      <div class="modal-sub">Please select your room number so we can personalize your concierge service.</div>
+      <div class="room-selector">
+        <label>Your Room Number</label>
+        <div class="room-controls">
+          <button class="room-btn" onclick="changeRoom(-1)">-</button>
+          <div class="room-val" id="roomVal">101</div>
+          <button class="room-btn" onclick="changeRoom(1)">+</button>
+        </div>
+      </div>
+      <button class="modal-confirm" onclick="confirmRoom()">Confirm Room &amp; Explore</button>
+    </div>
+  </div>
+
+  <!-- FLOATING TOAST -->
+  <div id="toast"></div>
 </div>
 
-<div id="toast"></div>
 <script src="guest.js"></script>
 </body>
 </html>
